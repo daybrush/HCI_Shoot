@@ -1,0 +1,28 @@
+//
+//  LevelController.cpp
+//  myGame
+//
+//  Created by younkue's air on 2016. 8. 1..
+//
+//
+
+#include "LevelController.hpp"
+
+void LevelController::setup(float s) {
+    start_time = s;
+    interval_time = 500;
+    
+}
+void LevelController::update(int score) {
+    level = score / 200;
+    mul_speed = 2 * (1 +  level * 0.5f);
+    mul_number = 1 + level * 0.3f;
+}
+
+bool LevelController::should_spawn() {
+    if (ofGetElapsedTimeMillis() - start_time > interval_time) {
+        start_time = ofGetElapsedTimeMillis();
+        return true;
+    }
+    return false;
+}
